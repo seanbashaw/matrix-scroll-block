@@ -5,11 +5,17 @@
 	"version": "0.1.0",
 	"title": "Matrix Scroll Block",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Creates a cool scrolling effect with text/links.",
 	"example": {},
 	"supports": {
-		"html": false
+		"color": {
+			"background": false,
+			"text" :true
+		},
+		"html": false,
+		"typography":{
+			"fontSize": true
+		}
 	},
 	"textdomain": "matrix-scroll-block",
 	"editorScript": "file:./index.js",

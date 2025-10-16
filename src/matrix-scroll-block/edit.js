@@ -20,7 +20,6 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -32,10 +31,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
-			{ __(
-				'Matrix Scroll Block – hello from the editor!',
-				'matrix-scroll-block'
-			) }
+			This is where the scrolling text will be.
 		</p>
 	);
 }
