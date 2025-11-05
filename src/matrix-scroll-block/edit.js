@@ -28,10 +28,16 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({clientId, attributes, setAttributes}){
 	return (
+		<>
+		<script type="text/javascript">
+		console.log("Hello from the editor");
+		</script>
 		<p { ...useBlockProps() }>
 			This is where the scrolling text will be.
 		</p>
+		</>
 	);
 }
+

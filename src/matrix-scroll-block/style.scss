@@ -1,3 +1,9 @@
+@font-face {
+font-family: matrixFont;
+src: url(resources/OCRA.ttf);
+font-weight:normal;
+}
 .wp-block-create-block-matrix-scroll-block {
 margin: 1em;
+font-family: matrixFont;
 }

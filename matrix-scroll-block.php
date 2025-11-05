@@ -57,3 +57,8 @@ function create_block_matrix_scroll_block_block_init() {
 	}
 }
 add_action( 'init', 'create_block_matrix_scroll_block_block_init' );
+add_action( 'wp-enqueue_script','ava_test_init');
+function ava_test_init() {
+	wp_enqueue_script('ava-test-js', get_template_directory_uri() . './view.js',array(), '1.0', true);
+
+}

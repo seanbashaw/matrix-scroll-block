@@ -19,7 +19,9 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
-
+import {store} from '@wordpress/interactivity';
 /* eslint-disable no-console */
-console.log( 'Hello World! (from create-block-matrix-scroll-block block)' );
+// If i need to add more than one matrix block in a page i'll convert to id based system but classes are already built into wordpress so might as well.
+var matrixInstances = document.getElementsByClassName("wp-block-create-block-matrix-scroll-block");
+console.log("Hello from viewscript!");
 /* eslint-enable no-console */
