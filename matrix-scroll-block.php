@@ -56,9 +56,9 @@ function create_block_matrix_scroll_block_block_init() {
 		register_block_type( __DIR__ . "/build/{$block_type}" );
 	}
 }
-add_action( 'init', 'create_block_matrix_scroll_block_block_init' );
-add_action( 'wp-enqueue_script','ava_test_init');
-function ava_test_init() {
-	wp_enqueue_script('ava-test-js', get_template_directory_uri() . './view.js',array(), '1.0', true);
-
+function matrixblock_enqueue_script() {
+	wp_register_script('matrix-js',__DIR__."/matrix.js",array(),'1.0.9',true);
+	wp_enqueue_script('matrix-js');
 }
+add_action('wp_enqueue_scripts','matrixblock_enqueue_script');
+add_action( 'init', 'create_block_matrix_scroll_block_block_init' );

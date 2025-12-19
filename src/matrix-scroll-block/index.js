@@ -17,6 +17,7 @@ import './style.scss';
  * Internal dependencies
  */
 import Edit from './edit';
+import Save from './save';
 import metadata from './block.json';
 const glasses = (
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
@@ -34,4 +35,5 @@ registerBlockType( metadata.name, {
 	 */
 	icon: glasses,
 	edit: Edit,
+	save: Save
 } );

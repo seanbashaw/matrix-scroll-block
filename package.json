@@ -16,5 +16,8 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.25.0"
+	},
+	"dependencies": {
+		"uuid": "^13.0.0"
 	}
 }
