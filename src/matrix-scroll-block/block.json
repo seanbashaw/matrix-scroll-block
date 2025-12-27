@@ -34,6 +34,9 @@
 
 	},
 	"supports": {
+		"anchor": true,
+		"align": true,
+		"position" true,
 		"interactivity": true,
 		"color": {
 			"background": false,
