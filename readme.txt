@@ -10,46 +10,23 @@ Example block scaffolded with Create Block tool.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+This plugin is a new one that allows you to create a typing animation like in the matrix! 
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/matrix-scroll-block` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
+Install and activate the plugin from the 'Plugins' screen in wordpress. From there you should be able to add a block directly by typing '/matrix' in a new block and click on the sunglasses. 
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Have you ever considered adding <feature x>? =
 
-An answer to that question.
+I love new ideas and ways to improve the plugin! Please go to https://github.com/seanbashaw/matrix-scroll-block/issues to see all the current issues/features and submit your own :)
 
-= What about foo bar? =
 
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
 
 == Changelog ==
-
-= 0.1.0 =
+- Added option to activate typing when in current view-frame.
+- Customized typing speed settings and wordpress styling support further.
+= 1.0.0 =
 * Release
 
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
