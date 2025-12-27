@@ -57,7 +57,7 @@ function create_block_matrix_scroll_block_block_init() {
 	}
 }
 function matrixblock_enqueue_script() {
-	wp_register_script('matrix-js',__DIR__."/matrix.js",array(),'1.0.9',true);
+	wp_register_script('matrix-js',__DIR__."/matrix.js",array(),'1.2.3',true);
 	wp_enqueue_script('matrix-js');
 }
 add_action('wp_enqueue_scripts','matrixblock_enqueue_script');

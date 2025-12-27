@@ -14,7 +14,24 @@
 		},
 		"matrixID": {
 			"type": "string"
+		},
+		"matrixSpeed": {
+			"type": "number",
+			"default": 10
+		},
+		"startDelay": {
+			"type": "number",
+			"default": 1.0
+		},
+		"betweenDelay": {
+			"type":"number",
+			"default": 1.0	
+		},
+		"onView": {
+			"type": "booelan",
+			"default": false
 		}
+
 	},
 	"supports": {
 		"interactivity": true,

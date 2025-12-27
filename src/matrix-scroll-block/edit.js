@@ -21,7 +21,7 @@ import {v4 as uuidv4} from 'uuid';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
-import {Button,PanelBody, TextControl, ToggleControl} from '@wordpress/components';
+import {Button,PanelBody, TextControl,RangeControl, ToggleControl, __experimentalInputControl as InputControl} from '@wordpress/components';
 
 
 /**
@@ -31,55 +31,126 @@ import {Button,PanelBody, TextControl, ToggleControl} from '@wordpress/component
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit *
  * @return {Element} Element to render.
  */
+const trashicon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+</svg>;
+
 export default function Edit({clientId,attributes, setAttributes}){
-	const {matrixID="huh", matrixText = []} = attributes;
+	const {matrixID, matrixText = [], matrixSpeed,startDelay,betweenDelay,onView} = attributes;
 	const matrixP = useRef(null);
+	const typerTimer = useRef(null);
+	const observer = useRef(null);
 	const blockProps = useBlockProps({
 	 id: matrixID,
-	'data-matrix': JSON.stringify(matrixText)
+	'data-matrix': JSON.stringify(matrixText),
+	'data-speed': matrixSpeed,
+	'data-onview': onView,
+	'data-startDelay': startDelay,
+	'data-betweenDelay': betweenDelay
 	});
+    function matrixType(letter,line) {
+                if (Object.keys(matrixText).length<=line){
+                        return;
+                }
+                if (letter==0){
+                        matrixP.current.innerHTML="";
+                }else{
+                        matrixP.current.innerText=matrixText[line].slice(0,letter);
+                }
+                letter++;
+                if (matrixText[line].length>=letter){
+                        let v = (1000/matrixSpeed);
+                        typerTimer.current = setTimeout(()=>{
+                                matrixType(letter,line);
+                        },v);
+                }else{
+                        typerTimer.current = setTimeout(()=>{
+                                line++;
+                        matrixType(0,line);
+                        },betweenDelay*1000);
+                }
+        }
+       
+
 	useEffect( () => {
+		observer.current = new IntersectionObserver((entries)=>{
+			for (const entry of entries){
+				if (entry.isIntersecting && onView){
+					typerTimer.current = setTimeout( () => {
+						matrixType(0,0);
+					},startDelay*1000);
+					observer.current.unobserve(entry.target);
+				}
+			}
+		});
+	}, []);
+	useEffect( () => {	
 		if (!attributes.matrixID){
 		setAttributes({matrixID:"block-"+clientId});
 		}
-		let typerTimer = "";
-		typerTimer = setTimeout( () => {
-        		matrixType(0,0);
-		}, 1000);
-	function matrixType(letter,line) {
-		if (Object.keys(matrixText).length<=line){
-			return;
-		}
-		if (letter==0){
-			matrixP.current.innerHTML="";
+		if (onView){
+			observer.current.observe(matrixP.current);
 		}else{
-			matrixP.current.innerText=matrixText[line].slice(0,letter);
+		typerTimer.current = setTimeout( () => {
+        		matrixType(0,0);
+		}, startDelay*1000);
 		}
-		letter++;
-   		if (matrixText[line].length>=letter){
-	   		typerTimer = setTimeout(()=>{
-				matrixType(letter,line);
-	   		},100);
-	   	}else{
-	   		typerTimer = setTimeout(()=>{
-				line++;
-	        	matrixType(0,line);
-	   		},1000);
-	   	}
-	}
-	return ()=>clearTimeout(typerTimer);
-	},[matrixText]);
+		return ()=>{
+		clearTimeout(typerTimer.current);
+		}
+	},[matrixText,matrixSpeed,onView,startDelay,betweenDelay]);
 	return (
 	<>
 		<InspectorControls>
+			<PanelBody title={__('Typing Settings','matrix-scroll-block')}>
+		<RangeControl
+			__next40pxDefaultSize
+			label="Characters Per Second"
+			value={matrixSpeed}
+			onChange={(val)=>setAttributes({matrixSpeed:val})}
+			min={1}
+			max={20}
+			/>
+		<RangeControl
+			__next40pcDefaultSize
+			label="Start delay"
+			value={startDelay}
+			min={0.0}
+			onChange={(val)=>setAttributes({startDelay:val})}
+			max={10.0}
+			/>
+		<RangeControl
+			__next40pxDefaultSize
+			label="Between delay"
+			value={betweenDelay}
+			onChange={(val)=>setAttributes({betweenDelay:val})}
+			min={0.0}
+			max={10.0}
+		/>
+
+		<ToggleControl
+			label="Start typing when in view"
+			help = {
+				onView ? 'Will start typing when user can see.' : 'Will start typing on page load.' }
+			checked = {onView}
+			onChange = {(val) => setAttributes({onView:val})
+			
+			}
+		/>
+		</PanelBody>
+
 			<PanelBody title={__('Matrix Text','matrix-scroll-block')}>
 			{Object.entries(matrixText).map(([key,value])=>
 				
-				<TextControl 
+				<InputControl 
 		__nextHasNoMarginBottom
 		__next40pxDefaultSize
 		key={key}
 		value={value || ''}
+		suffix={<Button
+			onClick = {()=>{
+				setAttributes({matrixText:matrixText.toSpliced(key,1)})}}
+			>{trashicon}</Button>}
 		onChange = {(nvalue)=>{
 			let newarray = [...matrixText];
 			newarray[key]=nvalue;
@@ -97,7 +168,7 @@ export default function Edit({clientId,attributes, setAttributes}){
 		</PanelBody>
 		
 		</InspectorControls>
-		<p { ...useBlockProps()}>
+		<p { ...blockProps} style={{"min-height":"1.5em"}}>
 			<span ref={matrixP}/>
 		</p>
 		</>
