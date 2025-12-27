@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:       Matrix Scroll Block
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin Name:       Matrix Typing Effect
+ * Description:       Types out text at various speeds/settings
  * Version:           0.1.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            The WordPress Contributors
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       matrix-scroll-block
+ * Text Domain:       matrix-typing-effect
  *
  * @package CreateBlock
  */
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
-function create_block_matrix_scroll_block_block_init() {
+function create_block_matrix_typing_effect_block_init() {
 	/**
 	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
 	 * based on the registered block metadata.
@@ -61,4 +61,4 @@ function matrixblock_enqueue_script() {
 	wp_enqueue_script('matrix-js');
 }
 add_action('wp_enqueue_scripts','matrixblock_enqueue_script');
-add_action( 'init', 'create_block_matrix_scroll_block_block_init' );
+add_action( 'init', 'create_block_matrix_typing_effect_block_init' );

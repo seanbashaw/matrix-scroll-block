@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Matrix Typing Effect",
 	"category": "widgets",
-	"description": "Creates a cool scrolling effect with text/links.",
+	"description": "Creates a cool scrolling effect for text.",
 	"example": {},
 	"attributes": {
 		"matrixText": {
