@@ -102,7 +102,7 @@ export default function Edit({clientId,attributes, setAttributes}){
 	return (
 	<>
 		<InspectorControls>
-			<PanelBody title={__('Typing Settings','matrix-scroll-block')}>
+			<PanelBody title={__('Typing Settings','matrix-typing-effect')}>
 		<RangeControl
 			__next40pxDefaultSize
 			label="Characters Per Second"
@@ -139,7 +139,7 @@ export default function Edit({clientId,attributes, setAttributes}){
 		/>
 		</PanelBody>
 
-			<PanelBody title={__('Matrix Text','matrix-scroll-block')}>
+			<PanelBody title={__('Matrix Text','matrix-typing-effect')}>
 			{Object.entries(matrixText).map(([key,value])=>
 				
 				<InputControl 

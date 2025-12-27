@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "create-block/matrix-scroll-block",
+	"name": "create-block/matrix-typing-effect",
 	"version": "0.1.0",
-	"title": "Matrix Scroll Block",
+	"title": "Matrix Typing Effect",
 	"category": "widgets",
 	"description": "Creates a cool scrolling effect with text/links.",
 	"example": {},
@@ -47,7 +47,7 @@
 			"fontSize": true
 		}
 	},
-	"textdomain": "matrix-scroll-block",
+	"textdomain": "matrix-typing-effect",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"
