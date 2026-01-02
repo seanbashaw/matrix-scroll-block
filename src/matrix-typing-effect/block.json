@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "create-block/matrix-typing-effect",
-	"version": "0.1.0",
+	"version": "0.3.0",
 	"title": "Matrix Typing Effect",
 	"category": "widgets",
 	"description": "Creates a cool scrolling effect for text.",
@@ -28,7 +28,7 @@
 			"default": 1.0	
 		},
 		"onView": {
-			"type": "booelan",
+			"type": "boolean",
 			"default": false
 		}
 
@@ -36,7 +36,7 @@
 	"supports": {
 		"anchor": true,
 		"align": true,
-		"position" true,
+		"position": true,
 		"interactivity": true,
 		"color": {
 			"background": false,
